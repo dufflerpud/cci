@@ -1,0 +1,16 @@
+DIRS=$(subst /Makefile,,$(wildcard */Makefile))
+MAKE=make
+
+top_vars:
+	@echo "DIRS=$(DIRS)"
+	@echo "PWD=$(PWD)"
+
+vars:		$(addprefix recurse+vars+,	$(DIRS));	@echo 'Completed "make -C $(PWD) $@".'
+clean:		$(addprefix recurse+clean+,	$(DIRS));	@echo 'Completed "make -C $(PWD) $@".'
+bins:		$(addprefix recurse+bins+,	$(DIRS));	@echo 'Completed "make -C $(PWD) $@".'
+links:		$(addprefix recurse+links+,	$(DIRS));	@echo 'Completed "make -C $(PWD) $@".'
+install:	$(addprefix recurse+install+,	$(DIRS));	@echo 'Completed "make -C $(PWD) $@".'
+
+recurse+%:
+		-$(MAKE) -C $(word 3,$(subst +, ,$@)) $(word 2,$(subst +, ,$@))
+		@echo ""

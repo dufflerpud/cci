@@ -129,14 +129,18 @@ extern int reprand( unsigned int seed, int range );
 /*	string_enum_list( strings, enums, COMMANDS );		*/
 
 #ifdef linux
-#define HAVE_STRERROR
+#define HAS_STRERROR
 #endif
 
 #ifdef __sun
-#define HAVE_STRERROR
+#define HAS_STRERROR
 #endif
 
-#ifdef HAVE_STRERROR
+#ifdef __HAIKU__
+#define HAS_STRERROR
+#endif
+
+#ifdef HAS_STRERROR
 #include <unistd.h>
 #include <errno.h>
 extern char *strerror( int );

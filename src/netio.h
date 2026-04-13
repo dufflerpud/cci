@@ -40,10 +40,6 @@ typedef unsigned long u_long;
 typedef void * caddr_t;
 */
 #include <sys/types.h>
-/*
-extern char *strerror( int );
-extern const char *sys_errlist[];
-*/
 extern struct servent *getservbyname();
 extern struct hostent *string_to_host( const char *hname );
 extern u_short string_to_port( const char *str );
